@@ -1,41 +1,42 @@
-<h2>Dashboard</h2>
+<h2>Dashboard</h2> 
 Signed in as <%= current_user.username %><br>
 
+<strong>Add a new task</strong><br>
 <%= form_for [current_user, @new_task] do |f| %>
-	<%= f.label "Task content:" %>
+	<%= f.label "Task content:" %><br>
 	<%= f.text_field :content, :required => true %>
 	<%= f.submit "Add task!" %>
 <% end %>
 
 <hr>
-<% if @all_tasks == nil %>
+<% if @undone_tasks == nil %>
 	<strong><p> You have no task entries yet </p></strong>
 <% else %>
-	<h4>Your ToDo list:</h4>
+	<h4>ToDo:</h4>
 	<table>
 		<tr>
 			<th>Task: </th>
 			<th>Status: </th>
 			<th></th>
 		</tr>
-		<% @all_tasks.each do |t| %>
+		<% @undone_tasks.each do |t| %>
 		<tr>
 			<td><%= t.content %></td>
 			<td><%= task_status(t) %></td>
 		</tr>
 		<% end %>
 	</table>
-	<hr>
-	<h4>Completed:</h4>
-	<table>
-		<tr>
-			<th>Task: </th>
-			<th></th>
-		</tr>
-		<% @all_tasks.each do |t| %>
-		<tr>
-			<td><%= t.content %></td>
-		</tr>
+<% end %>
+<hr>
+<% if @done_tasks != nil %>
+	<h4>Completed tasks:</h4>	
+	<% if @done_tasks.count >= 1 %>
+		<% @done_tasks.each do |t| %>
+				<ul>
+					<li><%= t.content %></li>
+				</ul>
 		<% end %>
-	</table>
+	<% end %>
+	<% else %>
+		<strong>You have done NOTHING!</strong>
 <% end %>
