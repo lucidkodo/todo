@@ -2,9 +2,9 @@ class TasksController < ApplicationController
 	before_action :signed_in
 
 	def index
-		@all_tasks = current_user.tasks
+		@undone_tasks = Task.where(:user_id => current_user.id, :status => false)
+		@done_tasks = Task.where(:user_id => current_user.id, :status => true)
 		@new_task = current_user.tasks.new
-		@done_task = current_user.tasks.where(status: true)
 	end
 
 	def create
