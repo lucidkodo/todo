@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 	    flash[:success] = "Signed in!"
 	    redirect_to root_url  
 	  else
-	    flash.now.alert = "Invalid email or password"
+	    flash[:danger] = "Invalid email or password"
 	    render "new"
 	  end
 	end

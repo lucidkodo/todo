@@ -17,9 +17,9 @@ module ApplicationHelper
 
   def task_status(task)
     if task.status == false
-      return "Unsolve"
+      return "Undone"
     else
-      return "Solved!"
+      return "Done!"
     end
   end 
   
@@ -27,6 +27,10 @@ module ApplicationHelper
     task = Task.find(params[:id])
     task.status = true
     task.save
+  end
+
+  def nope
+  	"Opps, something went wrong."
   end
 
 end
