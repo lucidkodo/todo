@@ -2,6 +2,7 @@ class User < ApplicationRecord
 
 	# attr_accessible :email, :password, :password_confirmation
   has_many :tasks
+  has_many :payments
   attr_accessor :password
   before_save :encrypt_password
   
