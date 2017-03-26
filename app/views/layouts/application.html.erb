@@ -33,10 +33,10 @@
        	  <% if signed_in? %>
 	          <%= form_tag root_path, method: :get do %>
 	            <li><%= text_field_tag :search, params[:search], placeholder: "Search for tasks" %></li>
-	            <li><%= submit_tag "Search", title: nil, description: nil, p_type: nil, photos: nil, city: nil, state: nil, country: nil, num_guest: nil, num_bedroom: nil, num_bathroom: nil, house_rule: nil, price: nil, user_id: nil %></li>          
+	            <li><%= submit_tag "Search", content: nil, user_id: nil, status: nil, photos: nil %></li>          
 	          <% end %>          
-	        <li><%= link_to "Profile", user_path(current_user) %></li>
-	        <li><%= link_to "Sign Out", sign_out_path, method: :delete %></li>  
+	        <li><%= link_to "Upgrade!", new_user_payment_path(current_user) %></li>
+	        <li><%= link_to "Sign Out", sign_out_path, method: :delete %></li>
         <% else %>  
           <% if controller_name === "users" && action_name === "new" %>
             <li><%= link_to "Sign In", sign_in_path %></li>  

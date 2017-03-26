@@ -54,6 +54,9 @@ class TasksController < ApplicationController
 	end
 
 	def time_to_pay
-		redirect_to root_path if current_user.tasks.count == 10
+		if (current_user.tasks.count == 10) && (current_user.premium == false)
+			flash[:warning] = "You have reached the maximum tasks entries."
+			redirect_to root_path
+		end
 	end
 end
