@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
 	before_action :signed_in
+	before_action :time_to_pay, only: [:create]
 
 	def index
 		@undone_tasks = Task.where(:user_id => current_user.id, :status => false)
@@ -50,5 +51,9 @@ class TasksController < ApplicationController
 
 	def signed_in
 		redirect_to sign_in_path if current_user == nil
+	end
+
+	def time_to_pay
+		redirect_to root_path if current_user.tasks.count == 10
 	end
 end
